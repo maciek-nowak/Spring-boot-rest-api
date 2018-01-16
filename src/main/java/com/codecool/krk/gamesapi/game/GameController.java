@@ -32,7 +32,7 @@ public class GameController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteGame(@PathVariable Integer id) {
+    public void deleteGame(@PathVariable Integer id) throws NoSuchIdException {
         this.gameService.deleteGame(id);
     }
 

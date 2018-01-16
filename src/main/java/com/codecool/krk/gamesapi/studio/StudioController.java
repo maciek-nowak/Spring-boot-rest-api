@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.studio;
 
+import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class StudioController {
     }
 
     @GetMapping("/{id}")
-    public Studio getStudio(@PathVariable Integer id) {
+    public Studio getStudio(@PathVariable Integer id) throws NoSuchIdException {
         Studio studio = this.studioService.findStudioById(id);
         return studio;
     }
@@ -31,7 +32,7 @@ public class StudioController {
     }
 
     @DeleteMapping("/{id}")
-    public void deleteStudio(@PathVariable Integer id) {
+    public void deleteStudio(@PathVariable Integer id) throws NoSuchIdException {
         this.studioService.deleteStudio(id);
     }
 }

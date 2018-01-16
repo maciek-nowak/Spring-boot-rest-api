@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.studio;
 
+import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +19,13 @@ public class StudioServiceImpl implements StudioService {
     }
 
     @Override
-    public Studio findStudioById(Integer id) {
+    public Studio findStudioById(Integer id) throws NoSuchIdException {
         Studio studio = this.studioRepository.findOne(id);
+
+        if(studio == null) {
+            throw new NoSuchIdException();
+        }
+
         return studio;
     }
 
@@ -29,7 +35,9 @@ public class StudioServiceImpl implements StudioService {
     }
 
     @Override
-    public void deleteStudio(Integer id) {
+    public void deleteStudio(Integer id) throws NoSuchIdException {
+        this.findStudioById(id);
+
         this.studioRepository.delete(id);
     }
 }

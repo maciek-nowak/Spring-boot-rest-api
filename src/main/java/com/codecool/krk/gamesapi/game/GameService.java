@@ -10,5 +10,5 @@ public interface GameService {
 
     void saveGame(Game game);
 
-    void deleteGame(Integer id);
+    void deleteGame(Integer id) throws NoSuchIdException;
 }

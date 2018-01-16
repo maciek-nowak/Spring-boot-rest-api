@@ -35,7 +35,10 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public void deleteGame(Integer id) {
+    public void deleteGame(Integer id) throws NoSuchIdException {
+
+        this.findGameById(id);
+
         this.gameRepository.delete(id);
     }
 }
