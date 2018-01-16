@@ -1,15 +1,15 @@
 package com.codecool.krk.gamesapi.game;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.codecool.krk.gamesapi.studio.Studio;
+
+import javax.persistence.*;
 
 @Entity
 public class Game {
     private Integer id;
     private String title;
     private Integer year;
+    private Studio studio;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -35,5 +35,14 @@ public class Game {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    @ManyToOne
+    public Studio getStudio() {
+        return studio;
+    }
+
+    public void setStudio(Studio studio) {
+        this.studio = studio;
     }
 }

@@ -6,28 +6,33 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping("/games")
 public class GameController {
 
-    private GameRepository gameRepository;
+    private GameService gameService;
 
-    public GameController(GameRepository gameRepository) {
-        this.gameRepository = gameRepository;
+    public GameController(GameService gameService) {
+        this.gameService = gameService;
     }
 
     @GetMapping("")
-    public Iterable<Game> index() {
-        Iterable<Game> games = this.gameRepository.findAll();
+    public Iterable<Game> getAllGames() {
+        Iterable<Game> games = this.gameService.findAllGames();
         return games;
     }
 
-    @GetMapping(path="/{id}")
+    @GetMapping("/{id}")
     public Game getGame(@PathVariable Integer id) {
-        Game game = this.gameRepository.findOne(id);
+        Game game = this.gameService.findGameById(id);
         return game;
     }
 
-    @PostMapping(path="")
+    @PostMapping("")
     public Game addGame(@RequestBody Game game) {
-        this.gameRepository.save(game);
+        this.gameService.saveGame(game);
         return game;
+    }
+
+    @DeleteMapping("/{id}")
+    public void deleteGame(@PathVariable Integer id) {
+        this.gameService.deleteGame(id);
     }
 
     @ExceptionHandler(Exception.class)
