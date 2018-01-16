@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.game;
 
+import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -18,8 +19,13 @@ public class GameServiceImpl implements GameService {
     }
 
     @Override
-    public Game findGameById(Integer id) {
+    public Game findGameById(Integer id) throws NoSuchIdException {
         Game game = this.gameRepository.findOne(id);
+
+        if(game == null) {
+            throw new NoSuchIdException();
+        }
+
         return game;
     }
 

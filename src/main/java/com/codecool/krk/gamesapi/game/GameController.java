@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.game;
 
+import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -19,7 +20,7 @@ public class GameController {
     }
 
     @GetMapping("/{id}")
-    public Game getGame(@PathVariable Integer id) {
+    public Game getGame(@PathVariable Integer id) throws NoSuchIdException {
         Game game = this.gameService.findGameById(id);
         return game;
     }
@@ -41,8 +42,4 @@ public class GameController {
         return game;
     }
 
-    @ExceptionHandler(Exception.class)
-    public  void  handleException(Exception ex) {
-
-    }
 }

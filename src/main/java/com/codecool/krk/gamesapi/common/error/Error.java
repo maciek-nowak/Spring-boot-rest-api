@@ -1,4 +1,4 @@
-package com.codecool.krk.gamesapi.error;
+package com.codecool.krk.gamesapi.common.error;
 
 public class Error {
 
