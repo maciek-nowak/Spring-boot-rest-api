@@ -35,6 +35,12 @@ public class GameController {
         this.gameService.deleteGame(id);
     }
 
+    @PutMapping("")
+    public Game updateGame(@RequestBody Game game) {
+        this.gameService.saveGame(game);
+        return game;
+    }
+
     @ExceptionHandler(Exception.class)
     public  void  handleException(Exception ex) {
 

@@ -1,15 +1,21 @@
 package com.codecool.krk.gamesapi.studio;
 
 import com.codecool.krk.gamesapi.game.Game;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import org.hibernate.validator.constraints.NotEmpty;
 
 import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
 
 @Entity
 public class Studio {
     private Integer id;
+    @NotEmpty
     private String name;
-    private Integer localization;
-    private Game game;
+    @NotEmpty
+    private String localization;
+    private Set<Game> games = new HashSet<>();
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -29,20 +35,22 @@ public class Studio {
         this.name = name;
     }
 
-    public Integer getLocalization() {
+    public String getLocalization() {
         return localization;
     }
 
-    public void setLocalization(Integer localization) {
+    public void setLocalization(String localization) {
         this.localization = localization;
     }
 
-    @OneToMany(mappedBy = "studio")
-    public Game getGame() {
-        return game;
+    @OneToMany(mappedBy = "studio", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    @JsonIgnoreProperties("studio")
+    public Set<Game> getGames() {
+        return games;
     }
 
-    public void setGame(Game game) {
-        this.game = game;
+    public void setGames(Set<Game> games) {
+        this.games = games;
     }
+
 }
