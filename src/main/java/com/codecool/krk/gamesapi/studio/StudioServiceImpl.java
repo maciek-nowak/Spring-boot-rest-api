@@ -31,6 +31,16 @@ public class StudioServiceImpl implements StudioService {
 
     @Override
     public void saveStudio(Studio studio) {
+        Integer id = studio.getId();
+
+        if (id != null) {
+            Studio studioInDatabase = this.studioRepository.findOne(id);
+
+            if (studioInDatabase != null) {
+                studio.setId(null);
+            }
+        }
+
         this.studioRepository.save(studio);
     }
 
@@ -39,5 +49,10 @@ public class StudioServiceImpl implements StudioService {
         this.findStudioById(id);
 
         this.studioRepository.delete(id);
+    }
+
+    @Override
+    public void updateStudio(Studio studio) {
+        this.studioRepository.save(studio);
     }
 }

@@ -31,6 +31,21 @@ public class GameServiceImpl implements GameService {
 
     @Override
     public void saveGame(Game game) {
+        Integer id = game.getId();
+
+        if (id != null) {
+            Game gameInDatabase = this.gameRepository.findOne(id);
+
+            if (gameInDatabase != null) {
+                game.setId(null);
+            }
+        }
+
+        this.gameRepository.save(game);
+    }
+
+    @Override
+    public void updateGame(Game game) {
         this.gameRepository.save(game);
     }
 

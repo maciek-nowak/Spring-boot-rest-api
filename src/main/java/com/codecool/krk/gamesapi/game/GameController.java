@@ -38,7 +38,7 @@ public class GameController {
 
     @PutMapping("")
     public Game updateGame(@RequestBody Game game) {
-        this.gameService.saveGame(game);
+        this.gameService.updateGame(game);
         return game;
     }
 

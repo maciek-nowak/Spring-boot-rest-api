@@ -35,4 +35,10 @@ public class StudioController {
     public void deleteStudio(@PathVariable Integer id) throws NoSuchIdException {
         this.studioService.deleteStudio(id);
     }
+
+    @PutMapping("")
+    public Studio updateStudio(@RequestBody Studio studio) {
+        this.studioService.updateStudio(studio);
+        return studio;
+    }
 }

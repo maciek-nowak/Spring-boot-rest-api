@@ -11,4 +11,6 @@ public interface StudioService {
     void saveStudio(Studio studio);
 
     void deleteStudio(Integer id) throws NoSuchIdException;
+
+    void updateStudio(Studio studio);
 }
