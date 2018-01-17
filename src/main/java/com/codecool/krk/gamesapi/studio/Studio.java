@@ -1,6 +1,7 @@
 package com.codecool.krk.gamesapi.studio;
 
 import com.codecool.krk.gamesapi.game.Game;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,6 +18,9 @@ public class Studio {
     private String localization;
     private Set<Game> games = new HashSet<>();
 
+    @JsonIgnore
+    private Boolean archived = false;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     public Integer getId() {
@@ -29,6 +33,14 @@ public class Studio {
 
     public String getName() {
         return name;
+    }
+
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
     }
 
     public void setName(String name) {
