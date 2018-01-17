@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.common;
 
+import com.codecool.krk.gamesapi.exception.NoGameToUpdateException;
 import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import com.codecool.krk.gamesapi.common.error.Error;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -33,6 +34,13 @@ public class ApplicationExceptionHandler extends ResponseEntityExceptionHandler 
     public ResponseEntity<Error> handleIfDataIntegrityViolationExceptionOccurred() {
         Error error = new Error("database integrity failed",
                 "game belongs to database non-existent studio");
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
+
+    @ExceptionHandler(NoGameToUpdateException.class)
+    public ResponseEntity<Error> handleIfNoGameToUpdateExceptionOccurred() {
+        Error error = new Error("no game to update",
+                "no active game of given id in database");
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
     }
 

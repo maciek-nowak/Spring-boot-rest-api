@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.game;
 
+import com.codecool.krk.gamesapi.exception.NoGameToUpdateException;
 import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 import org.springframework.web.bind.annotation.*;
 
@@ -37,7 +38,7 @@ public class GameController {
     }
 
     @PutMapping("")
-    public Game updateGame(@RequestBody Game game) {
+    public Game updateGame(@RequestBody Game game) throws NoGameToUpdateException {
         this.gameService.updateGame(game);
         return game;
     }

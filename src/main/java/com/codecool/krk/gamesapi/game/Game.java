@@ -1,6 +1,7 @@
 package com.codecool.krk.gamesapi.game;
 
 import com.codecool.krk.gamesapi.studio.Studio;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.validator.constraints.NotEmpty;
 
@@ -17,6 +18,17 @@ public class Game {
 
     @NotNull
     private Studio studio;
+
+    @JsonIgnore
+    private Boolean archived = false;
+
+    public Boolean getArchived() {
+        return archived;
+    }
+
+    public void setArchived(Boolean archived) {
+        this.archived = archived;
+    }
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

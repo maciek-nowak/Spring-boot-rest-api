@@ -1,5 +1,6 @@
 package com.codecool.krk.gamesapi.game;
 
+import com.codecool.krk.gamesapi.exception.NoGameToUpdateException;
 import com.codecool.krk.gamesapi.exception.NoSuchIdException;
 
 public interface GameService {
@@ -12,5 +13,5 @@ public interface GameService {
 
     void deleteGame(Integer id) throws NoSuchIdException;
 
-    void updateGame(Game game);
+    void updateGame(Game game) throws NoGameToUpdateException;
 }
