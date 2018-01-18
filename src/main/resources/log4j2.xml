@@ -9,7 +9,7 @@
         <RollingFile name="FileAppender" fileName="logs/log4j2-gamesapi.log"
                      filePattern="logs/log4j2-gamesapi-%d{yyyy-MM-dd}-%i.log">
 
-            <!--<MarkerFilter marker="RUNTIME" onMatch="ACCEPT" onMismatch="DENY"/>-->
+            <MarkerFilter marker="MYLOG" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
                 <Pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} : %m%n%ex</Pattern>
             </PatternLayout>
@@ -20,7 +20,7 @@
         </RollingFile>
 
         <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
-            <!--<MarkerFilter marker="RUNTIME" onMatch="DENY" onMismatch="ACCEPT"/>-->
+            <MarkerFilter marker="MYLOG" onMatch="DENY" onMismatch="ACCEPT"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
     </Appenders>

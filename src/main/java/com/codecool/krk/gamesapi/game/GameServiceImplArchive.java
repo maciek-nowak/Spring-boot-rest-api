@@ -2,6 +2,7 @@ package com.codecool.krk.gamesapi.game;
 
 import com.codecool.krk.gamesapi.exception.NoGameToUpdateException;
 import com.codecool.krk.gamesapi.exception.NoSuchIdException;
+import com.codecool.krk.gamesapi.logger.LoggerCreator;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -10,14 +11,17 @@ import org.springframework.stereotype.Service;
 public class GameServiceImplArchive implements GameService {
 
     private GameRepository gameRepository;
+    private LoggerCreator logger;
 
-    public GameServiceImplArchive(GameRepository gameRepository) {
+    public GameServiceImplArchive(GameRepository gameRepository, LoggerCreator logger) {
         this.gameRepository = gameRepository;
+        this.logger = logger;
     }
 
     @Override
     public Iterable<Game> findAllGames() {
         Iterable<Game> games = this.gameRepository.findAllByArchivedIsFalse();
+        this.logger.logInfo("Listed all games.");
         return games;
     }
 
