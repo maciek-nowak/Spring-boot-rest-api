@@ -1,2 +1,10 @@
-2018-01-18 15:14:12.425 : Listed all games.
-2018-01-18 15:14:27.647 : Listed all studios.
+2018-01-18 22:23:35.770 : Listed studio with id: 3
+2018-01-18 22:24:07.432 : Listed all studios.
+2018-01-18 22:25:01.817 : ERROR while listing studio with wrong id.
+2018-01-18 22:26:09.734 : Listed all studios.
+2018-01-18 22:26:41.009 : Added new studio with id: 3
+2018-01-18 22:33:01.045 : Added new studio with id: 8
+2018-01-18 22:34:46.273 : Added new studio with id: 9
+2018-01-18 23:16:20.371 : Listed all studios.
+2018-01-18 23:24:44.644 : Listed studio with id: 8
+2018-01-18 23:25:00.495 : ERROR while listing studio with wrong id.

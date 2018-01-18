@@ -41,13 +41,14 @@ public class StudioServiceImplArchive implements StudioService {
         Studio studio = this.studioRepository.findStudioByIdAndArchivedIsFalse(id);
 
         if(studio == null) {
+            this.logger.logError("ERROR while listing studio with wrong id.");
             throw new NoSuchIdException();
         }
 
         Set<Game> games = this.gameRepository.findAllByStudioAndArchivedIsFalse(studio);
         studio.setGames(games);
 
-//        this.logger.logError("Listed some studio.");
+        this.logger.logInfo("Listed studio with id: " + id);
         return studio;
     }
 
@@ -64,6 +65,7 @@ public class StudioServiceImplArchive implements StudioService {
         }
 
         this.studioRepository.save(studio);
+        this.logger.logInfo("Added new studio with id: " + studio.getId());
     }
 
     @Override
@@ -72,6 +74,7 @@ public class StudioServiceImplArchive implements StudioService {
         Studio studio = this.studioRepository.findStudioByIdAndArchivedIsFalse(id);
 
         if(studio == null) {
+            this.logger.logError("ERROR while archiving studio with wrong id.");
             throw new NoSuchIdException();
         }
 
@@ -82,6 +85,7 @@ public class StudioServiceImplArchive implements StudioService {
         }
 
         this.studioRepository.save(studio);
+        this.logger.logInfo("Archived studio with id: " + studio.getId());
     }
 
     @Override
@@ -89,10 +93,12 @@ public class StudioServiceImplArchive implements StudioService {
         Studio databaseStudio = this.studioRepository.findOne(studio.getId());
 
         if (databaseStudio == null || databaseStudio.getArchived()) {
+            this.logger.logError("ERROR while updating studio with wrong id.");
             throw new NoSuchIdException();
         }
 
         studio.setGames(databaseStudio.getGames());
         this.studioRepository.save(studio);
+        this.logger.logInfo("Updated studio with id: " + studio.getId());
     }
 }
