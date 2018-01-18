@@ -37,8 +37,8 @@ public class StudioController {
     }
 
     @PutMapping("")
-    public Studio updateStudio(@RequestBody Studio studio) {
+    public Studio updateStudio(@RequestBody Studio studio) throws NoSuchIdException {
         this.studioService.updateStudio(studio);
-        return studio;
+        return getStudio(studio.getId());
     }
 }
