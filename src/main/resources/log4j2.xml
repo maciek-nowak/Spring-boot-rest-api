@@ -28,13 +28,13 @@
         <!-- SMTP Appender -->
         <SMTP name="MailAppender"
               smtpProtocol="smtps"
-              subject="Log4j2 Demo [PROD]"
-              to="mcnowak@wp.pl"
-              from="mcnowak77@gmail.com"
-              smtpHost="smtp.gmail.com"
+              subject="GamesApi ERROR info"
+              to="mcnowak77@gmail.com"
+              from="mcnowak@wp.pl"
+              smtpHost="smtp.wp.pl"
               smtpPort="465"
-              smtpUsername="mcnowak77@gmail.com"
-              smtpPassword="chomk77"
+              smtpUsername="mcnowak"
+              smtpPassword="chomk777"
               bufferSize="1">
             <MarkerFilter marker="EMAIL" onMatch="ACCEPT" onMismatch="DENY"/>
             <PatternLayout>
