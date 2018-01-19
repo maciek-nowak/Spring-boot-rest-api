@@ -6,6 +6,7 @@
         </Property>
     </Properties>
     <Appenders>
+
         <RollingFile name="FileAppender" fileName="logs/log4j2-gamesapi.log"
                      filePattern="logs/log4j2-gamesapi-%d{yyyy-MM-dd}-%i.log">
 
@@ -23,12 +24,31 @@
             <MarkerFilter marker="MYLOG" onMatch="DENY" onMismatch="ACCEPT"/>
             <PatternLayout pattern="${LOG_PATTERN}"/>
         </Console>
+
+        <!-- SMTP Appender -->
+        <SMTP name="MailAppender"
+              smtpProtocol="smtps"
+              subject="Log4j2 Demo [PROD]"
+              to="mcnowak@wp.pl"
+              from="mcnowak77@gmail.com"
+              smtpHost="smtp.gmail.com"
+              smtpPort="465"
+              smtpUsername="mcnowak77@gmail.com"
+              smtpPassword="chomk77"
+              bufferSize="1">
+            <MarkerFilter marker="EMAIL" onMatch="ACCEPT" onMismatch="DENY"/>
+            <PatternLayout>
+                <Pattern>${LOG_PATTERN}</Pattern>
+            </PatternLayout>
+        </SMTP>
+
     </Appenders>
 
     <Loggers>
         <Root level="info">
             <AppenderRef ref="FileAppender" />
             <AppenderRef ref="ConsoleAppender" />
+            <AppenderRef ref="MailAppender" />
         </Root>
     </Loggers>
 

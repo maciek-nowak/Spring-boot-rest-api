@@ -30,9 +30,11 @@ public class GameServiceImplArchive implements GameService {
         Game game = this.gameRepository.findGameByIdAndArchivedIsFalse(id);
 
         if(game == null) {
+            this.logger.logError("ERROR while listing game with wrong id.");
             throw new NoSuchIdException();
         }
 
+        this.logger.logInfo("Listed game with id: " + id);
         return game;
     }
 
@@ -41,6 +43,7 @@ public class GameServiceImplArchive implements GameService {
 
         game.setId(null);
         this.gameRepository.save(game);
+        this.logger.logInfo("Added new game with id: " + game.getId());
     }
 
     @Override
@@ -51,11 +54,13 @@ public class GameServiceImplArchive implements GameService {
             Game gameInDatabase = this.gameRepository.findGameByIdAndArchivedIsFalse(id);
 
             if (gameInDatabase == null) {
+                this.logger.logError("ERROR while updating game with wrong id.");
                 throw new NoGameToUpdateException();
             }
         }
 
         this.gameRepository.save(game);
+        this.logger.logInfo("Updated game with id: " + game.getId());
     }
 
     @Override
@@ -64,6 +69,7 @@ public class GameServiceImplArchive implements GameService {
         Game game = this.findGameById(id);
         game.setArchived(true);
         this.gameRepository.save(game);
+        this.logger.logInfo("Archived game with id: " + game.getId());
     }
 
 }
